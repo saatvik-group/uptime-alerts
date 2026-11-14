@@ -1,4 +1,4 @@
-# Every 5 minutes: read the watchtower status list and open or close "DOWN: <app>" issues (see check.mjs).
+# Every 5 minutes: read the watchtower status list and open or close "DOWN: <app>" issues (see check.mjs). GitHub may run it a few minutes late.
 # Once a month: add a dated line to KEEPALIVE.md, because GitHub turns off scheduled runs after 60 days without commits.
 name: uptime
 on:
