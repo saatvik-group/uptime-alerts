@@ -1,0 +1,46 @@
+# Every 5 minutes: read the watchtower status list and open or close "DOWN: <app>" issues (see check.mjs).
+# Once a month: add a dated line to KEEPALIVE.md, because GitHub turns off scheduled runs after 60 days without commits.
+name: uptime
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+    - cron: '23 4 1 * *'
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Add a made-up app "test-app" that is down, to try the alert'
+        type: boolean
+        default: false
+permissions:
+  issues: write
+  contents: write
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+jobs:
+  check:
+    if: github.event.schedule != '23 4 1 * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node check.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          TEST: ${{ inputs.test }}
+  keepalive:
+    if: github.event.schedule == '23 4 1 * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "- $(date -u +%Y-%m-%d)" >> KEEPALIVE.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add KEEPALIVE.md
+          git commit -m "Keepalive $(date -u +%Y-%m-%d)"
+          git push
