@@ -16,3 +16,10 @@ flowchart LR
 |---|---|
 | check.mjs | The check |
 | KEEPALIVE.md | A dated line each month, so GitHub keeps the schedule on |
+
+## Editable drawings (draw.io)
+
+The same pictures as editable boxes and arrows are in [`architecture.drawio`](architecture.drawio) (one page per picture).
+Open it at app.diagrams.net (File › Open from › Device, or from OneDrive) or in the draw.io desktop app.
+A copy is kept in OneDrive › Business › Architecture › uptime-alerts.drawio. When a picture above changes, update both copies
+(`node tools/to-drawio.mjs` in the ops repo rebuilds the file from this page).
