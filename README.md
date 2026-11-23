@@ -1,5 +1,7 @@
 # Uptime alerts
 
+**Start here:** [How the app is put together (diagrams)](ARCHITECTURE.md) · [How a change goes live](DELIVERY.md)
+
 Sends an email within about 5–10 minutes when one of the apps stops answering, and another when it is back.
 
 ## How it works
