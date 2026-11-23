@@ -6,7 +6,7 @@ Sends an email within about 5 to 10 minutes when an app stops answering, and ano
 flowchart LR
   gh[GitHub Actions<br/>every 5 minutes]
   status[watchtower status.json<br/>public list: up or down]
-  issue[Issue "DOWN: app"<br/>opened, then closed when back]
+  issue[Issue DOWN: app<br/>opened, then closed when back]
   sai([Sai: GitHub emails])
   gh -- reads twice, 2.5 minutes apart --> status
   gh --> issue --> sai
