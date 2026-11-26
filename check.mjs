@@ -56,8 +56,8 @@ if (latest) {
     // the watchtower is back as soon as a read works
     const back = name === 'watchtower' ? true : latest.up.has(name) || (!latest.down.has(name) && !(name in latest.since));
     if (!back) continue;
-    await gh('POST', `/issues/${issue.number}/comments`, { body: 'Back up' });
-    await gh('PATCH', `/issues/${issue.number}`, { state: 'closed' });
+    // closed in one step, no comment, so GitHub sends one email (same as the watchtower)
+    await gh('PATCH', `/issues/${issue.number}`, { state: 'closed', state_reason: 'completed', title: `DOWN: ${name} (back up ${new Date().toISOString()})` });
     console.log(`Closed: DOWN: ${name}`);
   }
 }
