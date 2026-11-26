@@ -11,7 +11,7 @@ Sends an email within about 5–10 minutes when one of the apps stops answering,
 - An app counts as down only when two reads, 2.5 minutes apart, both say so.
 - When an app is down, an issue "DOWN: <app>" is opened. GitHub emails everyone watching this repository.
 - While the app stays down, nothing more is written, so no more emails.
-- When the app is back, the issue gets the comment "Back up" and is closed (one more email).
+- When the app is back, the issue is closed, with the time it came back in its title (one more email).
 - If the status list cannot be read twice in a row, or is more than 20 minutes old, the issue is "DOWN: watchtower".
 - On the 1st of each month a dated line is added to `KEEPALIVE.md`, so GitHub does not turn off the schedule.
 
@@ -26,4 +26,4 @@ the repository page), and GitHub email notifications must be on (Settings, Notif
 ## To try it
 
 Actions, "uptime", "Run workflow", tick "Add a made-up app test-app that is down". An issue "DOWN: test-app"
-opens. The next 5-minute run closes it with "Back up".
+opens. The next 5-minute run closes it.
