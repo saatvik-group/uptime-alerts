@@ -1,6 +1,6 @@
 # Uptime alerts
 
-**Start here:** [How the app is put together (diagrams)](ARCHITECTURE.md) · [How a change goes live](DELIVERY.md)
+**Start here:** [How it is put together (diagram)](ARCHITECTURE.md) · [How a change goes live](DELIVERY.md)
 
 Sends an email within about 5–10 minutes when one of the apps stops answering, and another when it is back.
 
@@ -11,7 +11,7 @@ Sends an email within about 5–10 minutes when one of the apps stops answering,
 - An app counts as down only when two reads, 2.5 minutes apart, both say so.
 - When an app is down, an issue "DOWN: <app>" is opened. GitHub emails everyone watching this repository.
 - While the app stays down, nothing more is written, so no more emails.
-- When the app is back, the issue is closed, with the time it came back in its title (one more email).
+- When the app is back, or is no longer on the list, the issue is closed, with the time it came back in its title (one more email).
 - If the status list cannot be read twice in a row, or is more than 20 minutes old, the issue is "DOWN: watchtower".
 - On the 1st of each month a dated line is added to `KEEPALIVE.md`, so GitHub does not turn off the schedule.
 

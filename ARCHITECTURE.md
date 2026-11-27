@@ -7,14 +7,15 @@ flowchart LR
   gh[GitHub Actions<br/>every 5 minutes]
   status[watchtower status.json<br/>public list: up or down]
   issue[Issue DOWN: app<br/>opened, then closed when back]
-  sai([Sai: GitHub emails])
+  owner([Owner: GitHub emails])
   gh -- reads twice, 2.5 minutes apart --> status
-  gh --> issue --> sai
+  gh --> issue --> owner
 ```
 
 | File | Holds |
 |---|---|
 | check.mjs | The check |
+| .github/workflows/uptime.yml | The schedule: the check every 5 minutes, and the monthly KEEPALIVE.md line |
 | KEEPALIVE.md | A dated line each month, so GitHub keeps the schedule on |
 
 ## Editable drawings (draw.io)
