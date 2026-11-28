@@ -5,7 +5,7 @@
 //   - when it answers again the issue gets the comment "Back up" and is closed.
 // If the status list itself cannot be read twice in a row, or has not been refreshed for 20 minutes, the issue is
 // "DOWN: watchtower". Nothing private is used: only the public status address and app names.
-const STATUS = 'https://watchtower.monad-group.workers.dev/status.json';
+const STATUS = 'https://status.monadgroup.co.uk/status.json';
 const GAP_MS = 150000;           // wait between the two reads
 const STALE_MS = 20 * 60000;     // the watchtower checks every 5 minutes; older than this means it has stopped
 const { GITHUB_TOKEN, GITHUB_REPOSITORY, TEST } = process.env;
@@ -46,7 +46,7 @@ const openByApp = new Map(open.filter((i) => i.title.startsWith('DOWN: ')).map((
 
 for (const [name, text] of downNow) {
   if (openByApp.has(name)) continue; // already open: say nothing more
-  await gh('POST', '/issues', { title: `DOWN: ${name}`, labels: ['down'], body: `${text}\n\nStatus page: https://watchtower.monad-group.workers.dev/status\n\nThis issue closes itself when ${name} is back.` });
+  await gh('POST', '/issues', { title: `DOWN: ${name}`, labels: ['down'], body: `${text}\n\nStatus page: https://status.monadgroup.co.uk/status\n\nThis issue closes itself when ${name} is back.` });
   console.log(`Opened: DOWN: ${name}`);
 }
 if (latest) {
